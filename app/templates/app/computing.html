@@ -1,0 +1,90 @@
+{% extends 'app/base.html' %}
+
+
+{% block content %}
+<div class="container p-2 base-box">
+    <div class="row w-100 shadow rounded border-dark text-light d-flex justify-content-center p-2" id="computing">
+        <h4>Computing</h4>
+        <form action="{% url 'app:compute' %}" method="POST" class="col-lg-8">
+            {% csrf_token %}
+            <div class="form-group mt-4 p-5">
+                <div class="mb-3 d-flex justify-content-center">
+                    <img id="plant_img" class="rounded-pill" src="../../static/app/img/Maize.jpeg" />
+                </div>
+                
+                <br/>
+                <label class="font-weight-bold">Plant :</label>
+                <select id="plant" class="form-select" name="plant" required>
+                    <option value="Maize">Maize</option>
+                    <option value="Millet">Millet</option>
+                    <option value="Rice">Rice</option>
+                    <option value="Sorghum">Sorghum</option>
+                    <option value="Soybean">Soybean</option>
+                    <option value="Sunflower">Sunflower</option>
+                </select>
+
+                <label class="mt-3 font-weight-bold">Soil :</label>
+                <select class="form-select" name="soil" required>
+                    <option value="S">S</option>
+                    <option value="LS">LS</option>
+                    <option value="SL">SL</option>
+                    <option value="L">L</option>
+                    <option value="SIL">SIL</option>
+                    <option value="SI">SI</option>
+                    <option value="SCL">SCL</option>
+                    <option value="CL">CL</option>
+                    <option value="SICL">SICL</option>
+                    <option value="SC">SC</option>
+                    <option value="SIC">SIC</option>
+                    <option value="C">C</option>
+                </select>
+
+                <label class="mt-3 font-weight-bold">Weather :</label>
+                <input class="form-control" name="tmax" type="number" placeholder="Tmax" step="0.0000000001" required>
+                <input class="form-control mt-3" name="tmin" type="number" placeholder="Tmin" step="0.0000000001" required>
+                <input class="form-control mt-3" name="rain" type="number" placeholder="rain" step="0.0000000001" required>
+                <input class="form-control mt-3" name="srad" type="number" placeholder="srad" step="0.0000000001" required>
+                <input class="form-control mt-3" name="rhum" type="number" placeholder="rhum" step="0.0000000001" required>
+
+                <label class="mt-3 font-weight-bold">Plant Date :</label>
+                <input class="form-control" name="plant_date" type="date" required>
+
+                <label class="mt-3 font-weight-bold">Harvest Date :</label>
+                <input class="form-control" name="harvest_date" type="date" required>
+
+                <button class="form-control mt-3 text-light" type="submit">comput</button>
+            </div>
+        </form>
+    </div>
+
+    {% if plant %}
+    <div class="row w-100 shadow rounded border-dark text-light d-flex justify-content-center p-2 mt-5" id="computed">
+        <h4>Computed</h4>
+
+        <div class="mt-2 p-5">
+            <h4>Inputs :</h4>
+            <label class="mt-1 font-weight-bold">plant : {{plant}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">tmax : {{tmax}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">tmin : {{tmin}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">rain : {{rain}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">srad : {{srad}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">rhum : {{rhum}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">plant_date : {{plant_date}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">harvest_date : {{harvest_date}}</label>
+
+
+            <h4 class="mt-3">Outputs :</h4>
+            <label class="mt-1 font-weight-bold">DAP : {{DAP}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">LAID : {{LAID}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">SWAD : {{SWAD}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">LWAD : {{LWAD}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">GWAD : {{GWAD}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">G#WD : {{GAD}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">GWGD : {{GWGD}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">HIAD : {{HIAD}}</label>&emsp;
+            <label class="mt-1 font-weight-bold">CWAD : {{CWAD}}</label>
+        </div>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

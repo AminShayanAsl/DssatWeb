@@ -1,0 +1,43 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class='container p-2 base-box'>
+    <div class="row w-100 shadow rounded border-dark text-light">
+        <div class="col-lg-6 rounded-left p-1" id="signin">
+            <h3>Sign in</h3>
+            <form action="{% url 'app:signin' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group mt-4 p-5">
+                    <input class="form-control" name="email" placeholder="email" required>
+                    <input class="form-control mt-3" name="password" type="password" placeholder="password" required>
+                    <button class="form-control mt-3 text-light" type="submit">submit</button>
+                </div>
+            </form>
+
+            {% if type == 'signin' %}
+                <p class="text-danger font-weight-bold">{{ msg }}</p>
+            {% endif %}
+        </div>
+
+        <div class="col-lg-6 rounded-right p-1" id="signup">
+            <h4>Sign up</h3>
+            <form action="{% url 'app:signup' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group mt-4 p-5">
+                    <input class="form-control" name="email" placeholder="email" required>
+                    <input class="form-control mt-3" name="password" type="password" placeholder="password" required>
+                    <button class="form-control mt-3 text-light" type="submit">submit</button>
+                </div>
+            </form>
+
+            {% if type == 'signup' %}
+                {% if color == 'red' %}
+                <p class="text-danger font-weight-bold">{{ msg }}</p>
+                {% elif color == 'green' %}
+                <p class="text-success font-weight-bold">{{ msg }}</p>
+                {% endif %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock content %}

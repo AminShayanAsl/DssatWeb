@@ -1,0 +1,49 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+<div class="container p-2 base-box">
+    <div class="row w-100 shadow rounded border-dark text-light p-2" id="profile">
+        <h4 class="mt-4 mb-4">{{ user.username }}</h4>
+        {% if empty == 'YES' %}
+        <h4 class="mt-5 mb-5">You have not had any calculations yet</h4>
+        {% elif empty == 'NO' %}
+            {% for obj in objs %}
+            <hr>
+            <div class="d-inline">
+                <h5 class="mt-2">{{ forloop.counter }}.</h5>
+
+                <h4>Inputs :</h4>
+                <label class="mt-1 font-weight-bold">plant : {{obj.plant}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">tmax : {{obj.tmax}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">tmin : {{obj.tmin}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">rain : {{obj.rain}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">srad : {{obj.srad}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">rhum : {{obj.rhum}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">plant_date : {{obj.date}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">harvest_date : {{obj.hdate}}</label>
+            </div>
+
+            <div class="d-inline">
+                <h4 class="mt-3 mb-2">Outputs :</h4>
+                <label class="mt-1 font-weight-bold">DAP : {{obj.DAP}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">LAID : {{obj.LAID}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">SWAD : {{obj.SWAD}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">LWAD : {{obj.LWAD}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">GWAD : {{obj.GWAD}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">G#WD : {{obj.GAD}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">GWGD : {{obj.GWGD}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">HIAD : {{obj.HIAD}}</label>&emsp;
+                <label class="mt-1 font-weight-bold">CWAD : {{obj.CWAD}}</label>
+            </div>
+            {% endfor %}
+        {% endif %}
+
+        <form method="POST" action="{% url 'app:logout' %}" class="mt-5">
+            {% csrf_token %}
+            <div class="form-group d-flex justify-content-center">
+                <button type="submit" class="bg-danger text-light form-control w-25">Logout</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

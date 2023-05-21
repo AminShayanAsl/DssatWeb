@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+
+<!-- About Section-->
+<section class="page-section bg-primary text-white mb-0" id="about">
+    <div class="container">
+        <!-- About Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase text-white">About</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom divider-light">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- About Section Content-->
+        <div class="row">
+            <div class="d-flex justify-content-center mb-3">
+                {% load static %}
+                <img id="about-dssat" src="{% static 'app/img/dssat.png' %}">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 ms-auto">
+                <p class="lead">
+                    The Decision Support System for Agrotechnology Transfer (DSSAT) is a set of computer programs for simulating agricultural crop growth. It has been used in over 100 countries by agronomists for evaluating farming methods. One application has been assessing the possible impacts on agriculture of climate change and testing adaptation methods.
+                    DSSAT is built with a modular approach, with different options available to represent such processes as evapotranspiration and soil organic matter accumulation, which facilitates testing different representations of processes important in crop growth. The functionality of DSSAT has also been extended through interfaces with other software such as GIS. DSSAT typically requires input parameters related to soil condition, weather, any management practices such as fertilizer use and irrigation, and characteristics of the crop variety being grown. Many common crops have their characteristics already implemented as DSSAT modules.
+                    DSSAT grew out of the International Benchmark Sites Network for Agrotechnological Transfer (IBSNAT) in the 1980s, with the first official release in 1989. Version 4, released in 2003, introduced a more modular structure and added tools for agricultural economic analysis and risk assessment. Development has continued in affiliation with the International Consortium for Agricultural Systems Applications (ICASA).
+                </p>
+            </div>
+            
+        </div>        
+    </div>
+</section>
+
+{% endblock content %}
